@@ -9,6 +9,8 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   position: relative;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .container {
@@ -78,5 +80,20 @@ body {
   }
   50% { 
     transform: translate(-50%, -50%) translateY(-15px) rotate(10deg); 
+  }
+}
+
+/* === RESPONSIVE UNTUK HP === */
+@media (max-width: 768px) {
+  .container {
+    width: 280px;
+    height: 280px;
+  }
+  .TBirthday {
+    padding: 16px 32px;
+    font-size: 1.2em;
+  }
+  .flower-icon {
+    font-size: 1.8em !important;
   }
 }
