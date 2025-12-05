@@ -1,0 +1,82 @@
+/* Semua style di-handle via JS, jadi file ini bisa KOSONG atau hanya berisi style awal */
+body {
+  background: linear-gradient(135deg, #ffe0f0, #fff5f9);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+}
+
+.container {
+  width: 300px;
+  height: 300px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 100, 150, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+  z-index: 10;
+  position: relative;
+}
+.container:hover {
+  transform: scale(1.05);
+}
+
+.TBirthday {
+  background: linear-gradient(45deg, #ff6f91, #ff9671);
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  font-size: 1.3em;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 105, 135, 0.3);
+  z-index: 10;
+}
+.TBirthday:hover {
+  background: linear-gradient(45deg, #ff9671, #ffc75f);
+  transform: scale(1.1);
+}
+
+.balloon {
+  position: absolute;
+  bottom: -120px;
+  width: 50px;
+  height: 70px;
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: rise 4s ease-in forwards;
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.1); opacity: 0; }
+}
+
+/* === Bunga mengelilingi tombol (diperbesar) === */
+.flower-icon {
+  position: absolute;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: float-flower 8s infinite ease-in-out;
+}
+
+@keyframes float-flower {
+  0%, 100% { 
+    transform: translate(-50%, -50%) translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translate(-50%, -50%) translateY(-15px) rotate(10deg); 
+  }
+}
