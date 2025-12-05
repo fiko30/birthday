@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const button = document.querySelector(".TBirthday");
   const container = document.querySelector(".container");
 
-  // === Bunga mengelilingi tombol awal — DIPERBESAR ===
+  // === Bunga mengelilingi tombol awal — RESPONSIF ===
   function createFlowerCircle() {
     const flowers = ["🌸", "🌷", "💐", "🌼", "🌺", "🌹", "🪻", "💮", "🌻", "💮"];
-    const radius = 200; // jarak dari pusat
+    const isMobile = window.innerWidth <= 768;
+    const radius = isMobile ? 160 : 200;
+    const baseSize = isMobile ? 1.6 : 2.0;
     const count = flowers.length;
 
     for (let i = 0; i < count; i++) {
@@ -16,8 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const flower = document.createElement("div");
       flower.className = "flower-icon";
       flower.textContent = flowers[i];
-      // Ukuran acak antara 2.0em - 2.8em
-      const size = 2.0 + Math.random() * 0.8;
+      const size = baseSize + Math.random() * 0.6;
       flower.style.fontSize = `${size}em`;
       flower.style.left = `calc(50% + ${x}px)`;
       flower.style.top = `calc(50% + ${y}px)`;
@@ -98,29 +99,30 @@ document.addEventListener("DOMContentLoaded", () => {
           position: relative;
         }
         .title {
-          font-size: 2.4em;
+          font-size: clamp(1.8em, 5vw, 2.4em);
           color: #ff4081;
-          margin-bottom: 1.2rem;
+          margin-bottom: 1rem;
           text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
+          text-align:center;
         }
         .subtitle.large {
-          font-size: 1.45em;
-          line-height: 1.7;
-          max-width: 650px;
-          margin: 0 auto 2rem;
+          font-size: clamp(1.1em, 4vw, 1.45em);
+          line-height: 1.6;
+          max-width: 95%;
+          margin: 0 auto 1.5rem;
           color: #ff69b4;
         }
         .decorations {
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
-          gap: 12px;
-          margin-top: 1.8rem;
+          gap: 10px;
+          margin-top: 1.5rem;
           padding: 0 1rem;
         }
         .decorations span {
           display: inline-block;
-          font-size: 2.2em;
+          font-size: clamp(1.8em, 4.5vw, 2.2em);
           color: #ff85a2;
           animation: float-deco 4s ease-in-out infinite;
         }
@@ -136,19 +138,19 @@ document.addEventListener("DOMContentLoaded", () => {
         .decorations span:nth-child(10) { animation-delay: 1.8s; }
         @keyframes float-deco {
           0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-14px) rotate(3deg); }
+          50% { transform: translateY(-12px) rotate(3deg); }
         }
         .button-container {
           display: flex;
           justify-content: center;
-          margin-top: 2rem;
+          margin-top: 1.8rem;
         }
         .arrow-button {
           background: white;
           border: 3px solid #ff4081;
           border-radius: 50px;
           padding: 12px 24px;
-          font-size: 1.4em;
+          font-size: clamp(1.2em, 4vw, 1.4em);
           color: #ff4081;
           cursor: pointer;
           box-shadow: 0 0 10px #ff85a2;
@@ -185,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         .heart {
           position: absolute;
-          font-size: 2em;
+          font-size: clamp(1.6em, 4vw, 2em);
           color: #ff4081;
           opacity: 0.9;
           pointer-events: none;
@@ -212,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 4500);
   });
 
-  // === HALAMAN 2: Foto + Ucapan Singkat — FOTO DI TENGAH (100% FIX) ===
+  // === HALAMAN 2: Foto + Ucapan Singkat — RESPONSIF ===
   function showPhotoPage() {
     document.body.innerHTML = '';
 
@@ -252,21 +254,21 @@ document.addEventListener("DOMContentLoaded", () => {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0 1.5rem;
+        padding: 0 1.2rem;
         box-sizing: border-box;
       }
       .photo-frame {
-        width: 250px;
-        height: 250px;
-        border: 12px solid #ffaec9;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+        width: clamp(200px, 60vw, 250px);
+        height: clamp(200px, 60vw, 250px);
+        border: 10px solid #ffaec9;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(255, 105, 180, 0.3);
         display: flex;
         justify-content: center;
         align-items: center;
         animation: pulse 2s infinite;
         overflow: hidden;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.2rem;
       }
       .photo-frame img {
         width: 100%;
@@ -278,9 +280,9 @@ document.addEventListener("DOMContentLoaded", () => {
       .sweet-line {
         text-align: center;
         color: #ff4081;
-        font-size: 1.5em;
-        line-height: 1.6;
-        max-width: 80%;
+        font-size: clamp(1.3em, 4.5vw, 1.5em);
+        line-height: 1.5;
+        max-width: 90%;
         margin: 0 auto;
         padding: 0 0.5rem;
         text-shadow: 1px 1px 2px rgba(255, 182, 193, 0.5);
@@ -292,15 +294,15 @@ document.addEventListener("DOMContentLoaded", () => {
         background: white;
         border: 3px solid #ff4081;
         border-radius: 50px;
-        padding: 12px 28px;
-        font-size: 1.3em;
+        padding: 10px 24px;
+        font-size: clamp(1.1em, 4vw, 1.3em);
         color: #ff4081;
         cursor: pointer;
         box-shadow: 0 0 12px #ff85a2;
         animation: glow-pink 1.8s infinite alternate;
         font-family: 'Poppins', sans-serif;
         font-weight: 600;
-        margin-top: 1.8rem;
+        margin-top: 1.5rem;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -320,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       .heart {
         position: absolute;
-        font-size: 2em;
+        font-size: clamp(1.6em, 4vw, 2em);
         color: #ff4081;
         opacity: 0.9;
         pointer-events: none;
@@ -346,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === HALAMAN 3: Paragraf Cinta Panjang — TIDAK TERPOTONG (FIXED) ===
+  // === HALAMAN 3: Paragraf Cinta Panjang — RESPONSIF & TIDAK TERPOTONG ===
   function showLoveMessage() {
     document.body.innerHTML = '';
 
@@ -374,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
       body {
         background: linear-gradient(135deg, #fff0f8, #ffe0f0);
         font-family: 'Poppins', sans-serif;
-        min-height: 100dvh; /* ✅ dynamic viewport height */
+        min-height: 100dvh;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -382,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
         overflow-y: auto;
         overflow-x: hidden;
         position: relative;
-        padding: 2.5rem 1.5rem 2rem;
+        padding: 2rem 1.2rem 1.5rem;
         box-sizing: border-box;
         -webkit-overflow-scrolling: touch;
       }
@@ -390,22 +392,22 @@ document.addEventListener("DOMContentLoaded", () => {
         max-width: 650px;
         text-align: center;
         color: #ff4081;
-        font-size: 1.3em;
-        line-height: 1.7;
+        font-size: clamp(1.1em, 4vw, 1.3em);
+        line-height: 1.65;
         margin: 0 auto;
         text-shadow: 1px 1px 2px rgba(255, 182, 193, 0.3);
         overflow-wrap: break-word;
       }
       .flower {
         position: absolute;
-        font-size: 1.8em;
+        font-size: clamp(1.4em, 3.5vw, 1.8em);
         opacity: 0.85;
         pointer-events: none;
         z-index: 1;
       }
       .heart {
         position: absolute;
-        font-size: 2em;
+        font-size: clamp(1.6em, 4vw, 2em);
         color: #ff4081;
         opacity: 0.9;
         pointer-events: none;
